@@ -1,0 +1,19 @@
+# Security + caching headers (Netlify and Cloudflare Pages read this file; Vercel uses vercel.json).
+#
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Strict-Transport-Security: max-age=31536000
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://0.peerjs.com wss://0.peerjs.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src https://calendar.google.com; frame-ancestors 'none'; upgrade-insecure-requests
+
+# The HTML shell must always be revalidated so visitors get new deployments immediately.
+/
+  Cache-Control: no-cache
+/index.html
+  Cache-Control: no-cache
+
+# Vite fingerprints everything in /assets, so it is safe to cache for a year.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

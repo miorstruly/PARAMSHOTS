@@ -1,0 +1,3 @@
+# Single-page app: serve index.html for /transfer, /privacy-policy, /terms-and-conditions on refresh or direct visit.
+# (Netlify and Cloudflare Pages read this file. Vercel uses vercel.json instead.)
+/*    /index.html   200
