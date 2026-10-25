@@ -27,7 +27,7 @@ import { WebGLErrorBoundary } from "./WebGLErrorBoundary";
 import AvailabilityCalendar from "./AvailabilityCalendar";
 import type { Concert } from "./api";
 import MessengerButton from "./MessengerButton";
-import { useSeo } from "./seo";
+import { useSeo, DEFAULT_TITLE, DEFAULT_DESCRIPTION } from "./seo";
 import concert2 from "./assets/concert-2.jpg";
 import concertAirSupply from "./assets/concert-air-supply.png";
 import concert3 from "./assets/concert-3.jpg";
@@ -943,23 +943,22 @@ const NAV_LINKS = [
 ];
 
 function HomePage() {
-  useSeo({
-    title: "ParamShots | Phone Rental in Pampanga: Rent an iPhone 17 Pro Max",
-    description:
-      "Rent a flagship iPhone 17 Pro Max in Pampanga for concerts, travel, weddings and content creation. Clear daily rates, easy online booking, Kapampangan-first service.",
-    path: "/",
+useSeo({
+  title: DEFAULT_TITLE,
+  description: DEFAULT_DESCRIPTION,
+  path: "/",
+});
+const [featuredIndex, setFeaturedIndex] = useState(0);
+const [featuredPaused, setFeaturedPaused] = useState(false);
+const [concerts] = useState<Concert[]>(() => {
+  const today = getTodayISO();
+  return featuredConcerts.filter((c) => {
+    const date = getConcertDateISO(c);
+    return date !== null && date >= today;
   });
-  const [featuredIndex, setFeaturedIndex] = useState(0);
-  const [featuredPaused, setFeaturedPaused] = useState(false);
-  const [concerts] = useState<Concert[]>(() => {
-    const today = getTodayISO();
-    return featuredConcerts.filter((c) => {
-      const date = getConcertDateISO(c);
-      return date !== null && date >= today;
-    });
-  });
-  const isCompact = useCompactTouch();
-
+});
+const isCompact = useCompactTouch();
+  
   // Auto-advance the featured concerts carousel (pauses on hover/touch)
   useEffect(() => {
     if (featuredPaused || concerts.length < 2) return;
