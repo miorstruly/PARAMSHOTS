@@ -102,12 +102,12 @@ const pricingPlans = [
 ];
 
 const requirements = [
-  { icon: "id", title: "Valid Government ID", desc: "Two (2) IDs, at least one of which is government-issued. A selfie with your government ID is important." },
+  { icon: "id", title: "Valid Government ID", desc: "Two (2) valid IDs, at least one of which is government-issued. A selfie with your government ID is important." },
   { icon: "chat", title: "Active personal Facebook account", desc: "Dummy accounts, accounts without a profile picture, accounts with ambiguous names, and locked or private profiles are strictly prohibited." },
-  { icon: "form", title: "Proof of billing", desc: "Surname and address must be included. Must match the information on your IDs and the google form. (e.g Electric/Water/Internet Bill)" },
-  { icon: "deposit", title: "Security Deposit", desc: "A P2,000 refundable deposit is needed. After the unit and all accessories are securely returned in their original condition, this will be returned in full" },
+  { icon: "form", title: "Proof of billing", desc: "Surname and address must be included and must match the information on your IDs and the google form. (e.g Electric/Water/Internet Bill)" },
+  { icon: "deposit", title: "Security Deposit", desc: "A P2,000 refundable deposit is needed. The deposit will be refunded in full amount once the unit and all acceesories have been returned in their original condition" },
   { icon: "agreement", title: "Provide an emergency contact", desc: "A family member: Their phone number and Facebook account.A screenshot of your Messenger conversation with them must be provided as proof" },
-  { icon: "age", title: "18 Years Old & Above", desc: "No minors allowed" },
+  { icon: "age", title: "18 Years Old & Above", desc: "Renters must be at least 18 years old. No minors allowed" },
 ];
 
 const requirementGroups = [
