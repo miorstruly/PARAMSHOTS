@@ -530,12 +530,6 @@ export default function FileTransfer() {
   const totalSelected = files.reduce((sum, f) => sum + f.size, 0);
   const shareLink = code ? `${window.location.origin}/transfer#code=${code}` : "";
 
-  const statusLabel = mode === "send"
-    ? ({ idle: "Ready", waiting: "Waiting", pending: "Approve", sending: "Sending", done: "Done", error: "Error" } as const)[sendStatus]
-    : ({ idle: "Ready", connecting: "Connecting", waiting: "Waiting", receiving: "Receiving", done: "Done", error: "Error" } as const)[recvStatus];
-  const statusColor =
-    statusLabel === "Error" ? "bg-red-500" : statusLabel === "Ready" || statusLabel === "Done" ? "bg-emerald-500" : "bg-amber-400";
-
   const sendUI = () => {
     if (sendStatus === "waiting") {
       return (
@@ -662,10 +656,8 @@ export default function FileTransfer() {
             setDragging(false);
             addFiles(e.dataTransfer.files);
           }}
-          className={`flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed px-4 py-10 text-center backdrop-blur-sm transition-colors ${
-            dragging
-              ? "border-[#7A0000] bg-white/60"
-              : "border-[#7A0000]/30 bg-white/25 hover:border-[#7A0000]/60 hover:bg-white/40"
+          className={`flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-solid border-[#7A0000] px-4 py-10 text-center backdrop-blur-sm transition-colors ${
+            dragging ? "bg-white/60" : "bg-white/25 hover:bg-white/40"
           }`}
         >
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/60 text-[#7A0000] shadow-sm">
@@ -835,7 +827,7 @@ export default function FileTransfer() {
 
   return (
     <div className="mx-auto w-full max-w-xl rounded-3xl border border-white/60 bg-white/40 text-left shadow-[0_8px_32px_rgba(122,0,0,0.15)] backdrop-blur-xl">
-      <div className="flex items-center justify-between border-b border-white/40 px-5 py-3">
+      <div className="flex items-center justify-center border-b border-white/40 px-5 py-3">
         <div className="inline-flex rounded-full border border-white/50 bg-white/30 p-1 backdrop-blur-md" role="group" aria-label="Transfer mode">
           {(["send", "receive"] as const).map((m) => (
             <button
@@ -851,10 +843,6 @@ export default function FileTransfer() {
               {m === "send" ? "Send" : "Receive"}
             </button>
           ))}
-        </div>
-        <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-[#4b5563]">
-          <span className={`h-2 w-2 rounded-full ${statusColor}`} />
-          {statusLabel}
         </div>
       </div>
 
