@@ -656,9 +656,11 @@ export default function FileTransfer() {
             setDragging(false);
             addFiles(e.dataTransfer.files);
           }}
-          className={`flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-solid border-[#7A0000] px-4 py-10 text-center backdrop-blur-sm transition-colors ${
-            dragging ? "bg-white/60" : "bg-white/25 hover:bg-white/40"
-          }`}
+          className={`flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-solid px-4 py-10 text-center backdrop-blur-sm transition-colors ${
+  dragging
+    ? "border-[#7A0000] bg-white/60"
+    : "border-[#7A0000]/30 bg-white/25 hover:border-[#7A0000] hover:bg-white/40"
+}`}
         >
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/60 text-[#7A0000] shadow-sm">
             <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
