@@ -9,6 +9,8 @@ import SiteButton from "./SiteButton";
  * - Files travel directly between the two devices, encrypted by WebRTC (DTLS).
  * - A free public PeerJS signaling service only introduces the two devices. It never sees the files.
  * - The sender approves the receiver, each code works for one device and expires after 10 minutes.
+ *
+ * Styling: glassmorphism (frosted translucent card). Only class names were changed, the logic is untouched.
  */
 
 const PEER_PREFIX = "paramshots-xfer-";
@@ -57,7 +59,7 @@ const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve,
 
 function ProgressBar({ percent }: { percent: number }) {
   return (
-    <div className="h-2 w-full overflow-hidden rounded-full bg-[#f3f4f6]">
+    <div className="h-2 w-full overflow-hidden rounded-full bg-white/50">
       <div
         className="h-full rounded-full bg-[#7A0000] transition-all duration-150"
         style={{ width: `${Math.min(100, Math.max(0, percent))}%` }}
@@ -538,7 +540,7 @@ export default function FileTransfer() {
     if (sendStatus === "waiting") {
       return (
         <div className="text-center">
-          <p className="text-sm text-[#6b7280]">
+          <p className="text-sm text-[#4b5563]">
             On your own device, open this page, tap <strong>Receive</strong>, and enter this code, or scan the QR code.
           </p>
           <div
@@ -547,7 +549,8 @@ export default function FileTransfer() {
           >
             {formatCode(code)}
           </div>
-          <div className="mx-auto mt-4 w-fit rounded-xl border border-[#e5e7eb] bg-white p-3">
+          {/* The QR code keeps a solid white background so phones can scan it reliably */}
+          <div className="mx-auto mt-4 w-fit rounded-xl border border-white/70 bg-white p-3 shadow-md">
             <QRCodeSVG value={shareLink} size={148} fgColor="#1c1c1e" />
           </div>
           <div className="mt-4 flex flex-wrap justify-center gap-2">
@@ -558,7 +561,7 @@ export default function FileTransfer() {
               {copied === "link" ? "Copied!" : "Copy link"}
             </SiteButton>
           </div>
-          <p className="mt-4 text-xs text-[#6b7280]">
+          <p className="mt-4 text-xs text-[#4b5563]">
             Waiting for your device to connect… Keep this page open. The code expires in 10 minutes and works for one
             device.
           </p>
@@ -575,7 +578,7 @@ export default function FileTransfer() {
           <div className="text-base font-bold" style={{ fontFamily: "Manrope, sans-serif" }}>
             A device wants to receive {files.length} {files.length === 1 ? "file" : "files"}
           </div>
-          <p className="mt-2 text-sm text-[#6b7280]">
+          <p className="mt-2 text-sm text-[#4b5563]">
             Only allow this if it is your own device. If you do not recognize it, decline.
           </p>
           <div className="mt-5 flex gap-3">
@@ -597,17 +600,17 @@ export default function FileTransfer() {
         <div>
           <div className="flex items-center justify-between text-sm">
             <span className="font-semibold">{finishing ? "Finishing up…" : "Sending…"}</span>
-            <span className="text-[#6b7280]">{Math.round(pct)}%</span>
+            <span className="text-[#4b5563]">{Math.round(pct)}%</span>
           </div>
           <div className="mt-2">
             <ProgressBar percent={pct} />
           </div>
-          <p className="mt-3 truncate text-xs text-[#6b7280]">
+          <p className="mt-3 truncate text-xs text-[#4b5563]">
             {sendProgress
               ? `File ${Math.min(sendProgress.index + 1, sendProgress.count)} of ${sendProgress.count}${sendProgress.name ? ` · ${sendProgress.name}` : ""} · ${formatBytes(sendProgress.bytes)} of ${formatBytes(sendProgress.totalBytes)}`
               : "Starting…"}
           </p>
-          <p className="mt-3 text-xs text-[#6b7280]">Keep this screen on and this page open until it says Done.</p>
+          <p className="mt-3 text-xs text-[#4b5563]">Keep this screen on and this page open until it says Done.</p>
         </div>
       );
     }
@@ -615,7 +618,7 @@ export default function FileTransfer() {
     if (sendStatus === "done") {
       return (
         <div className="text-center">
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100/80 text-emerald-600">
             <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
@@ -623,7 +626,7 @@ export default function FileTransfer() {
           <div className="mt-3 text-base font-bold" style={{ fontFamily: "Manrope, sans-serif" }}>
             Transfer complete
           </div>
-          <p className="mt-1 text-sm text-[#6b7280]">
+          <p className="mt-1 text-sm text-[#4b5563]">
             Check that the files opened on your device before deleting anything from this phone.
           </p>
           <SiteButton variant="primary" full onClick={resetSend} style={{ marginTop: 20 }}>
@@ -659,25 +662,27 @@ export default function FileTransfer() {
             setDragging(false);
             addFiles(e.dataTransfer.files);
           }}
-          className={`flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed px-4 py-10 text-center transition-colors ${
-            dragging ? "border-[#7A0000] bg-[#7A0000]/5" : "border-[#d1d5db] hover:border-[#7A0000]/50"
+          className={`flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed px-4 py-10 text-center backdrop-blur-sm transition-colors ${
+            dragging
+              ? "border-[#7A0000] bg-white/60"
+              : "border-[#7A0000]/30 bg-white/25 hover:border-[#7A0000]/60 hover:bg-white/40"
           }`}
         >
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#7A0000]/10 text-[#7A0000]">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/60 text-[#7A0000] shadow-sm">
             <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 16V4m0 0l-4 4m4-4l4 4M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
             </svg>
           </div>
           <div className="mt-3 text-sm font-semibold">Tap to choose photos, videos, or ZIP files</div>
-          <div className="mt-1 text-xs text-[#6b7280]">or drop files here</div>
+          <div className="mt-1 text-xs text-[#4b5563]">or drop files here</div>
         </div>
 
         {files.length > 0 && (
           <ul className="mt-4 max-h-44 space-y-2 overflow-y-auto">
             {files.map((f, i) => (
-              <li key={`${f.name}-${i}`} className="flex items-center justify-between gap-3 rounded-lg bg-[#f9fafb] px-3 py-2 text-sm">
+              <li key={`${f.name}-${i}`} className="flex items-center justify-between gap-3 rounded-lg border border-white/50 bg-white/40 px-3 py-2 text-sm">
                 <span className="truncate">{f.name}</span>
-                <span className="flex flex-shrink-0 items-center gap-3 text-xs text-[#6b7280]">
+                <span className="flex flex-shrink-0 items-center gap-3 text-xs text-[#4b5563]">
                   {formatBytes(f.size)}
                   <button
                     type="button"
@@ -694,14 +699,14 @@ export default function FileTransfer() {
         )}
 
         {totalSelected > BIG_TRANSFER_BYTES && (
-          <p className="mt-3 rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-800">
+          <p className="mt-3 rounded-lg bg-amber-50/80 px-3 py-2 text-xs text-amber-800">
             This is a big transfer ({formatBytes(totalSelected)}). The receiving device holds the files in memory while
             they arrive, so a computer works best, or send them in smaller batches.
           </p>
         )}
 
         {sendStatus === "error" && sendError && (
-          <p className="mt-3 rounded-lg bg-red-50 px-3 py-2 text-xs text-red-700">{sendError}</p>
+          <p className="mt-3 rounded-lg bg-red-50/80 px-3 py-2 text-xs text-red-700">{sendError}</p>
         )}
 
         <SiteButton variant="primary" full onClick={startSending} disabled={!files.length} style={{ marginTop: 16 }}>
@@ -719,7 +724,7 @@ export default function FileTransfer() {
           <div className="mt-3 text-sm font-semibold">
             {recvStatus === "connecting" ? "Connecting…" : "Waiting for the sender to approve…"}
           </div>
-          <p className="mt-1 text-xs text-[#6b7280]">
+          <p className="mt-1 text-xs text-[#4b5563]">
             {recvStatus === "waiting" ? "Tap “Allow & send” on the other device." : "This can take a few seconds."}
           </p>
           <button type="button" onClick={resetRecv} className="mt-4 text-xs font-semibold text-[#7A0000] hover:underline">
@@ -735,13 +740,13 @@ export default function FileTransfer() {
         <div>
           <div className="flex items-center justify-between text-sm">
             <span className="font-semibold">{recvStatus === "done" ? "Transfer complete" : "Receiving…"}</span>
-            <span className="text-[#6b7280]">{Math.round(recvStatus === "done" ? 100 : pct)}%</span>
+            <span className="text-[#4b5563]">{Math.round(recvStatus === "done" ? 100 : pct)}%</span>
           </div>
           <div className="mt-2">
             <ProgressBar percent={recvStatus === "done" ? 100 : pct} />
           </div>
           {recvStatus === "receiving" && recvProgress && (
-            <p className="mt-3 truncate text-xs text-[#6b7280]">
+            <p className="mt-3 truncate text-xs text-[#4b5563]">
               File {Math.min(recvProgress.index + 1, recvProgress.count)} of {recvProgress.count}
               {recvProgress.name ? ` · ${recvProgress.name}` : ""} · {formatBytes(recvProgress.bytes)} of{" "}
               {formatBytes(recvProgress.totalBytes)}
@@ -751,9 +756,9 @@ export default function FileTransfer() {
           {received.length > 0 && (
             <ul className="mt-4 max-h-52 space-y-2 overflow-y-auto">
               {received.map((f, i) => (
-                <li key={`${f.name}-${i}`} className="flex items-center justify-between gap-3 rounded-lg bg-[#f9fafb] px-3 py-2 text-sm">
+                <li key={`${f.name}-${i}`} className="flex items-center justify-between gap-3 rounded-lg border border-white/50 bg-white/40 px-3 py-2 text-sm">
                   <span className="truncate">
-                    {f.name} <span className="text-xs text-[#6b7280]">· {formatBytes(f.size)}</span>
+                    {f.name} <span className="text-xs text-[#4b5563]">· {formatBytes(f.size)}</span>
                   </span>
                   <a
                     href={f.url}
@@ -768,7 +773,7 @@ export default function FileTransfer() {
           )}
 
           {recvStatus === "receiving" && (
-            <p className="mt-3 text-xs text-[#6b7280]">Keep this screen on and this page open until it says complete.</p>
+            <p className="mt-3 text-xs text-[#4b5563]">Keep this screen on and this page open until it says complete.</p>
           )}
 
           {recvStatus === "done" && (
@@ -810,10 +815,10 @@ export default function FileTransfer() {
             if (e.key === "Enter") connect();
           }}
           placeholder="ABCD-EFGH"
-          className="mt-2 w-full rounded-xl border border-[#e5e7eb] px-4 py-3 text-center text-2xl font-bold tracking-[0.2em] focus:border-[#7A0000]/50 focus:outline-none focus:ring-2 focus:ring-[#7A0000]/10"
+          className="mt-2 w-full rounded-xl border border-white/60 bg-white/50 px-4 py-3 text-center text-2xl font-bold tracking-[0.2em] backdrop-blur-sm focus:border-[#7A0000]/50 focus:outline-none focus:ring-2 focus:ring-[#7A0000]/10"
         />
         {recvStatus === "error" && recvError && (
-          <p className="mt-3 rounded-lg bg-red-50 px-3 py-2 text-xs text-red-700">{recvError}</p>
+          <p className="mt-3 rounded-lg bg-red-50/80 px-3 py-2 text-xs text-red-700">{recvError}</p>
         )}
         <SiteButton
           variant="primary"
@@ -829,9 +834,9 @@ export default function FileTransfer() {
   };
 
   return (
-    <div className="mx-auto w-full max-w-xl rounded-2xl border border-[#e5e7eb] bg-white text-left shadow-xl shadow-[#7A0000]/5">
-      <div className="flex items-center justify-between border-b border-[#e5e7eb] px-5 py-3">
-        <div className="inline-flex rounded-full bg-[#f3f4f6] p-1" role="group" aria-label="Transfer mode">
+    <div className="mx-auto w-full max-w-xl rounded-3xl border border-white/60 bg-white/40 text-left shadow-[0_8px_32px_rgba(122,0,0,0.15)] backdrop-blur-xl">
+      <div className="flex items-center justify-between border-b border-white/40 px-5 py-3">
+        <div className="inline-flex rounded-full border border-white/50 bg-white/30 p-1 backdrop-blur-md" role="group" aria-label="Transfer mode">
           {(["send", "receive"] as const).map((m) => (
             <button
               key={m}
@@ -840,14 +845,14 @@ export default function FileTransfer() {
               onClick={() => setMode(m)}
               aria-pressed={mode === m}
               className={`rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
-                mode === m ? "bg-[#7A0000] text-white" : "text-[#6b7280] hover:text-[#1c1c1e]"
+                mode === m ? "bg-[#7A0000] text-white shadow-md" : "text-[#4b5563] hover:text-[#1c1c1e]"
               }`}
             >
               {m === "send" ? "Send" : "Receive"}
             </button>
           ))}
         </div>
-        <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-[#6b7280]">
+        <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-[#4b5563]">
           <span className={`h-2 w-2 rounded-full ${statusColor}`} />
           {statusLabel}
         </div>
@@ -855,7 +860,7 @@ export default function FileTransfer() {
 
       <div className="p-5">{mode === "send" ? sendUI() : receiveUI()}</div>
 
-      <div className="border-t border-[#e5e7eb] px-5 py-3 text-center text-[11px] uppercase tracking-wider text-[#9ca3af]">
+      <div className="border-t border-white/40 px-5 py-3 text-center text-[11px] uppercase tracking-wider text-[#6b7280]">
         End-to-end encrypted. Files are never stored on a server.
       </div>
     </div>
