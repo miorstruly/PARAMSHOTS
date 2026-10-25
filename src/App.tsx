@@ -71,7 +71,7 @@ const pricingPlans = [
       "Full device access",
       "Accessories included",
       "Messenger support",
-      "Additional Php 300 for handling fee",
+      "Additional ₱300 handling fee",
     ],
   },
   {
@@ -103,10 +103,10 @@ const pricingPlans = [
 
 const requirements = [
   { icon: "id", title: "Valid Government ID", desc: "Two (2) valid IDs, at least one of which is government-issued. A selfie with your government ID is important." },
-  { icon: "chat", title: "Active personal Facebook account", desc: "Dummy accounts, accounts without a profile picture, accounts with ambiguous names, and locked or private profiles are strictly prohibited." },
-  { icon: "form", title: "Proof of billing", desc: "Surname and address must be included and must match the information on your IDs and the google form. (e.g Electric/Water/Internet Bill)" },
-  { icon: "deposit", title: "Security Deposit", desc: "A P2,000 refundable deposit is needed. The deposit will be refunded in full amount once the unit and all acceesories have been returned in their original condition" },
-  { icon: "agreement", title: "Provide an emergency contact", desc: "A family member: Their phone number and Facebook account.A screenshot of your Messenger conversation with them must be provided as proof" },
+  { icon: "chat", title: "Active personal Facebook account and phone number", desc: "Dummy accounts, accounts without a profile picture, accounts with ambiguous names, and locked or private profiles are strictly prohibited. An active phone number is also required." },
+  { icon: "form", title: "Proof of billing", desc: "Surname and address must be included and must match the information on your IDs and the google form. (e.g., electric, water, or internet bill)" },
+  { icon: "deposit", title: "Security Deposit", desc: "A ₱2,000 refundable deposit is needed. The deposit will be refunded in full amount once the unit and all accessories have been returned in their original condition." },
+  { icon: "agreement", title: "Provide an emergency contact", desc: "A family member: their phone number and Facebook account. A screenshot of your Messenger conversation with them must be provided as proof." },
   { icon: "age", title: "18 Years Old & Above", desc: "Renters must be at least 18 years old. No minors allowed" },
 ];
 
@@ -200,14 +200,6 @@ const featuredConcerts: Concert[] = [
     location: "Smart Araneta Coliseum, Quezon City",
     image: concert9,
     description: "A live show full of nostalgic anthems and crowd moments.",
-  },
-  {
-    title: "5 Seconds of Summer",
-    date: "Sunday, November 29, 2026",
-    dateISO: "2026-11-29",
-    location: "SM Mall of Asia Arena, Pasay",
-    image: concert6,
-    description: "One more chance to experience the show in November.",
   },
   {
     title: "Cup of Joe Symphony",
