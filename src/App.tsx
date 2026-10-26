@@ -62,7 +62,7 @@ const phones = [
 
 const pricingPlans = [
   {
-    name: "Standard",
+    name: "Premium",
     price: "₱2,500",
     per: "per day",
     duration: "1–2 days",
@@ -75,7 +75,7 @@ const pricingPlans = [
     ],
   },
   {
-    name: "Premium",
+    name: "Standard",
     price: "₱2,000",
     per: "per day",
     duration: "3–5 days",
@@ -296,15 +296,13 @@ const faqs: FaqItem[] = [
           <p>The longer you rent, the lower the daily rate:</p>
           <ul className={faqList}>
             <li>
-              <strong className={strong}>Standard – ₱2,500/day</strong> (1–2 days). Additional ₱300 handling fee.
+              <strong className={strong}>Standard – ₱2,500/day</strong> (1–2 days). An additional ₱300 handling fee applies.
             </li>
             <li>
-              <strong className={strong}>Premium – ₱2,000/day</strong> (3–5 days) – Best Value. Includes everything in
-              Standard, plus priority booking, free handling fee, and extended support hours.
+              <strong className={strong}>Premium – ₱2,000/day</strong> (3–5 days) | Best Value. Includes everything in Standard, plus priority booking, free handling fee, and extended support hours.
             </li>
             <li>
-              <strong className={strong}>Long Rent – ₱1,500/day</strong> (6+ days). Includes everything in Premium,
-              plus a bigger discount and our best value rate.
+              <strong className={strong}>Long Rent – ₱1,500/day</strong> (6+ days). Includes everything in Premium, plus greater savings and our lowest daily rate.
             </li>
           </ul>
         </div>
@@ -332,7 +330,7 @@ const faqs: FaqItem[] = [
   {
     q: { en: "Do you have lower-priced units?", tl: "May lower units po ba kayo?" },
     a: {
-      en: "For now, we don't have lower units yet. The iPhone 17 Pro Max is the only device available. Thank you for understanding!",
+      en: "Unfortunately, we don't have any lower-priced units available at the moment. The iPhone 17 Pro Max is currently our only device available. Thank you for understanding!",
       tl: "Sa ngayon po ay wala pa kaming lower units. iPhone 17 Pro Max lang po ang available na device. Maraming salamat po sa pang-unawa!",
     },
   },
@@ -351,12 +349,11 @@ const faqs: FaqItem[] = [
     a: {
       en: (
         <p>
-          Before returning the phone, transfer them privately to your own device. No iCloud sign-in is needed. Follow
-          the steps on our{" "}
+          Before returning the phone, transfer them privately to your own device. No iCloud sign-in is required. Follow the steps on our{" "}
           <Link to="/transfer" className="font-semibold text-white underline underline-offset-2">
             photo and video transfer page
           </Link>
-          . Please finish before your return time, and delete your files from the rental phone afterwards.
+          . Please make sure to complete your transfer before your scheduled return time, and delete your files from the rental phone afterwards.
         </p>
       ),
       tl: (
@@ -376,18 +373,17 @@ const faqs: FaqItem[] = [
     a: {
       en: (
         <div className="space-y-3">
-          <p>To proceed with a rental, please complete the following:</p>
+          <p>To proceed with a rental, please complete the following requirements:</p>
           <ul className={faqList}>
-            <li>You must be 18 years or older. Minors are not allowed.</li>
-            <li>Two (2) valid IDs, at least one of which is government-issued, plus a selfie holding your government ID.</li>
-            <li>A proof of billing showing your surname and address, matching your IDs and the inquiry form.</li>
+            <li>You must be at least 18 years old. Minors are not allowed</li>
+            <li>Two (2) valid IDs, at least one of which must be government-issued, plus a selfie holding your government-issued ID</li>
+            <li>Proof of billing showing your surname and address, which must match the information on your IDs and the inquiry form</li>
             <li>A personal Facebook account and an active phone number.</li>
             <li>
-              An emergency contact (a family member): their phone number, their Facebook account, and a screenshot of
-              your conversation with them.
+              An emergency contact who is a family member. You must provide their phone number, Facebook account, and a screenshot of your conversation with them.
             </li>
           </ul>
-          <p>If the requirements are not met, we reserve the right to cancel the inquiry and decline the rental.</p>
+          <p>If you do not meet these requirements, we reserve the right to cancel your inquiry and decline your rental request</p>
         </div>
       ),
       tl: (
@@ -501,7 +497,7 @@ const faqs: FaqItem[] = [
   {
     q: { en: "Is the down payment refundable?", tl: "Refundable po ba ang down payment?" },
     a: {
-      en: "The down payment is non-refundable, but it will be deducted from your rental fee, so it isn't an extra cost.",
+      en: "The down payment is non-refundable, but it will be deducted from your total rental fee, so it won't be an additional cost.",
       tl: "Hindi po refundable ang down payment, pero ibabawas po ito sa rental fee ninyo, kaya hindi po ito dagdag na gastos.",
     },
   },
@@ -516,9 +512,9 @@ const faqs: FaqItem[] = [
     },
   },
   {
-    q: { en: "Can I rent for the same day?", tl: "Pwede po ba ang same-day rent?" },
+    q: { en: "Do you accept same day return bookings?", tl: "Pwede po ba ang same-day return rent?" },
     a: {
-      en: "Our minimum rental period is 24 hours. For slot availability on your preferred date, please message us.",
+      en: "Our minimum rental period is 24 hours. To check availability for your preferred date, please send us a message.",
       tl: "Ang minimum rental period po namin ay 24 hours. Para sa availability ng slot sa araw na gusto ninyo, message lang po kayo sa amin.",
     },
   },
@@ -528,7 +524,7 @@ const faqs: FaqItem[] = [
       tl: "Pwede po ba ang meet-up, at may handling fee po ba?",
     },
     a: {
-      en: "Yes, meet-up is the only option for now. There is an additional ₱300 handling fee for 1–2 day rentals. The handling fee is free for rentals of 3 days or more.",
+      en: "Yes! Meet-up is currently our only pick-up option. A ₱300 handling fee applies to rentals lasting 1–2 days. The handling fee is free for rentals of 3 days or more.",
       tl: "Opo, meet-up lang po ang available sa ngayon. May additional ₱300 handling fee po para sa 1–2 days na rental. Libre na po ang handling fee kapag 3 days pataas.",
     },
   },
@@ -579,8 +575,8 @@ const faqs: FaqItem[] = [
   },
   {
     q: {
-      en: "Can I sign in my personal iCloud account?",
-      tl: "Pwede po bang i-sign in ang personal iCloud account ko?",
+      en: "Can I sign in to my personal iCloud account?",
+      tl: "Pwede po ba akong mag-sign in sa sarili kong iCloud account?",
     },
     a: {
       en: "Sorry, signing in a personal iCloud account on the rental unit is not allowed.",
