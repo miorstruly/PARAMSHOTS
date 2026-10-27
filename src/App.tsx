@@ -98,7 +98,7 @@ const pricingPlans = [
     duration: "3–5 days",
     highlight: true,
     features: [
-      "Everything in Standard",
+      "Everything in Premium",
       "Priority booking",
       "Free handling fee",
       "Extended support hours",
@@ -111,7 +111,7 @@ const pricingPlans = [
     duration: "6+ days",
     highlight: false,
     features: [
-      "Everything in Premium",
+      "Everything in Standard",
       "Bigger Discount",
       "Best value rate",
     ],
@@ -454,7 +454,7 @@ const faqs: FaqItem[] = [
               <strong className={strong}>Standard – ₱2,000/day</strong> (3–5 days) | Best Value. Includes everything in Premium, plus priority booking, free handling fee, and extended support hours.
             </li>
             <li>
-              <strong className={strong}>Long Rent – ₱1,500/day</strong> (6+ days). Includes everything in Premium, plus greater savings and our lowest daily rate.
+              <strong className={strong}>Long Rent – ₱1,500/day</strong> (6+ days). Includes everything in Standard, plus greater savings and our lowest daily rate.
             </li>
           </ul>
         </div>
@@ -471,7 +471,7 @@ const faqs: FaqItem[] = [
               nasa Premium, plus priority booking, libreng handling fee, at extended support hours.
             </li>
             <li>
-              <strong className={strong}>Long Rent – ₱1,500/day</strong> (6+ days). Kasama ang lahat ng nasa Premium,
+              <strong className={strong}>Long Rent – ₱1,500/day</strong> (6+ days). Kasama ang lahat ng nasa Standard,
               plus mas malaking discount at best value rate.
             </li>
           </ul>
