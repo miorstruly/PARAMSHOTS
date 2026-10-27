@@ -926,20 +926,23 @@ function useCompactTouch() {
   return compact;
 }
 
-// True on wide screens: the featured concerts carousel shows 5 cards there, and 3 everywhere else.
-function useWideScreen() {
-  const query = "(min-width: 1100px)";
-  const [wide, setWide] = useState(
-    () => typeof window !== "undefined" && window.matchMedia(query).matches
+// Measures an element's width so the featured concerts carousel can size its cards to fit
+// any screen (phones, tablets and desktops) instead of relying on fixed breakpoints.
+function useElementWidth<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [width, setWidth] = useState(() =>
+    typeof window === "undefined" ? 1024 : Math.min(window.innerWidth - 40, 1152)
   );
   useEffect(() => {
-    const mq = window.matchMedia(query);
-    const update = () => setWide(mq.matches);
+    const el = ref.current;
+    if (!el) return;
+    const update = () => setWidth(el.clientWidth);
     update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
   }, []);
-  return wide;
+  return [ref, width] as const;
 }
 
 // Scroll-linked replacement for TiltCard: the card tilts in from the bottom, flattens as it
@@ -1114,7 +1117,17 @@ const [concerts] = useState<Concert[]>(() => {
   });
 });
 const isCompact = useCompactTouch();
-const isWide = useWideScreen();
+const [carouselRef, carouselW] = useElementWidth<HTMLDivElement>();
+const touchStartX = useRef<number | null>(null);
+// Carousel geometry, computed from the real width of the carousel
+const phoneLayout = carouselW < 600; // phones: peek cards, only 3 dots
+const showFive = carouselW >= 1000; // wide screens: 5 cards. Phones and tablets: 3 cards
+const cardW =
+  carouselW < 520
+    ? Math.min(300, carouselW * 0.66)
+    : Math.min(300, Math.max(250, carouselW * 0.4));
+const cardH = cardW * 1.75;
+const stageH = Math.round(cardH * 1.05 + 36 + 24);
   
   // Auto-advance the featured concerts carousel (pauses on hover/touch)
   useEffect(() => {
@@ -1258,27 +1271,46 @@ const isWide = useWideScreen();
     </div>
 
     {/* Portrait card carousel: centre card is larger, outlined in white, and sits on top.
-        Shows 5 cards on wide screens and 3 on smaller ones. */}
+        Card size and spacing are computed from the carousel's width, so it fits phones, tablets
+        and desktops. Shows 5 cards on wide screens and 3 elsewhere. Swipe left/right on touch screens. */}
     {concerts.length > 0 ? <div
-      className="relative mx-auto h-[32rem] max-w-6xl overflow-hidden min-[380px]:h-[35rem] sm:h-[37rem] md:h-[40rem]"
-      style={{ perspective: "1400px" }}
-      onMouseEnter={() => setFeaturedPaused(true)}
-      onMouseLeave={() => setFeaturedPaused(false)}
-      onTouchStart={() => setFeaturedPaused(true)}
-      onTouchEnd={() => setFeaturedPaused(false)}
+      ref={carouselRef}
+      className="relative mx-auto w-full max-w-6xl overflow-hidden"
+      style={{ perspective: "1400px", height: stageH, touchAction: "pan-y" }}
+      onPointerEnter={(e) => {
+        if (e.pointerType === "mouse") setFeaturedPaused(true);
+      }}
+      onPointerLeave={(e) => {
+        if (e.pointerType === "mouse") setFeaturedPaused(false);
+      }}
+      onTouchStart={(e) => {
+        touchStartX.current = e.touches[0].clientX;
+        setFeaturedPaused(true);
+      }}
+      onTouchEnd={(e) => {
+        const start = touchStartX.current;
+        touchStartX.current = null;
+        setFeaturedPaused(false);
+        if (start === null) return;
+        const dx = e.changedTouches[0].clientX - start;
+        if (Math.abs(dx) > 40) {
+          const n = concerts.length;
+          setFeaturedIndex((i) => (i + (dx < 0 ? 1 : -1) + n) % n);
+        }
+      }}
     >
       {concerts.map((c, i) => {
         const n = concerts.length;
         const half = Math.floor(n / 2);
         const offset = ((i - featuredIndex + n + half) % n) - half;
         const abs = Math.abs(offset);
-        const maxVisible = isWide ? 2 : 1; // 5 cards on wide screens, 3 otherwise
+        const maxVisible = showFive ? 2 : 1;
         const visible = abs <= maxVisible;
         const isCenter = offset === 0;
         const dir = Math.sign(offset);
-        const shiftX = abs === 0 ? 0 : dir * (abs === 1 ? 82 : 136);
+        const shiftX = abs === 0 ? 0 : dir * (abs === 1 ? cardW * 0.78 : cardW * 1.32);
         const cardScale = isCenter ? 1.1 : abs === 1 ? 0.86 : 0.68;
-        const tilt = abs === 0 ? 0 : -dir * (abs === 1 ? 22 : 30);
+        const tilt = abs === 0 ? 0 : -dir * (abs === 1 ? (phoneLayout ? 18 : 22) : 30);
 
         return (
           <article
@@ -1287,13 +1319,15 @@ const isWide = useWideScreen();
             onClick={() => {
               if (!isCenter && visible) setFeaturedIndex(i);
             }}
-            className={`absolute left-1/2 top-9 h-[26rem] w-[68%] overflow-hidden rounded-3xl bg-[#7A0000] text-white transition-all duration-700 ease-in-out min-[380px]:h-[29rem] sm:h-[31rem] sm:w-[42%] md:h-[34rem] md:w-[300px] ${
+            className={`absolute left-1/2 top-9 overflow-hidden rounded-3xl bg-[#7A0000] text-white transition-all duration-700 ease-in-out ${
               isCenter
                 ? "ring-4 ring-white shadow-[0_24px_40px_-18px_rgba(0,0,0,0.5)]"
                 : "cursor-pointer ring-1 ring-white/40 shadow-lg"
             }`}
             style={{
-              transform: `translateX(calc(-50% + ${shiftX}%)) scale(${cardScale}) rotateY(${tilt}deg)`,
+              width: cardW,
+              height: cardH,
+              transform: `translateX(calc(-50% + ${shiftX}px)) scale(${cardScale}) rotateY(${tilt}deg)`,
               zIndex: isCenter ? 30 : abs === 1 ? 20 : visible ? 10 : 0,
               opacity: visible ? 1 : 0,
               filter: isCenter ? "none" : abs === 1 ? "brightness(0.6)" : "brightness(0.4)",
@@ -1306,6 +1340,7 @@ const isWide = useWideScreen();
               alt={c.imageAlt || `${c.title} live at ${c.location} on ${c.date}`}
               loading={abs <= 2 ? "eager" : "lazy"}
               decoding="async"
+              draggable={false}
               onError={(e) => {
                 // A missing or broken image falls back to the default photo instead of showing a broken icon
                 const img = e.currentTarget;
@@ -1320,7 +1355,7 @@ const isWide = useWideScreen();
             {/* Details */}
             <div className="absolute inset-x-0 bottom-0 flex flex-col p-4 sm:p-5">
               <h3
-                className="line-clamp-2 text-xl font-extrabold leading-tight drop-shadow sm:text-2xl"
+                className="line-clamp-2 text-lg font-extrabold leading-tight drop-shadow sm:text-2xl"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
                 {c.title}
@@ -1361,9 +1396,12 @@ const isWide = useWideScreen();
       </p>
     )}
 
-    {/* Dots (wrap onto extra rows so a long concert list never overflows) */}
-    {concerts.length > 1 && <div className="mx-auto mt-6 flex max-w-md flex-wrap justify-center gap-2">
-      {concerts.map((_, i) => (
+    {/* Dots: phones show only 3 (previous, current, next). Tablets and desktops show all of them. */}
+    {concerts.length > 1 && <div className="mx-auto mt-6 flex max-w-lg flex-wrap justify-center gap-2">
+      {(phoneLayout && concerts.length > 3
+        ? [-1, 0, 1].map((d) => (featuredIndex + d + concerts.length) % concerts.length)
+        : concerts.map((_, i) => i)
+      ).map((i) => (
         <button
           key={i}
           onClick={() => setFeaturedIndex(i)}
