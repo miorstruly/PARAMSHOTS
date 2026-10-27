@@ -39,6 +39,23 @@ import concert8 from "./assets/concert-8.jpg";
 import concert9 from "./assets/concert-9.jpg";
 import concert10 from "./assets/concert-10.jpg";
 import concert11 from "./assets/concert-11.jpg";
+// 2027 concerts: upload these images to src/assets/ with exactly these names
+import concert12 from "./assets/concert-12.jpg";
+import concert13 from "./assets/concert-13.jpg";
+import concert14 from "./assets/concert-14.jpg";
+import concert15 from "./assets/concert-15.jpg";
+import concert16 from "./assets/concert-16.jpg";
+import concert17 from "./assets/concert-17.jpg";
+import concert18 from "./assets/concert-18.jpg";
+import concert19 from "./assets/concert-19.jpg";
+import concert20 from "./assets/concert-20.jpg";
+import concert21 from "./assets/concert-21.jpg";
+import concert22 from "./assets/concert-22.jpg";
+import concert23 from "./assets/concert-23.jpg";
+import concert24 from "./assets/concert-24.jpg";
+import concert25 from "./assets/concert-25.jpg";
+import concert26 from "./assets/concert-26.jpg";
+import concert27 from "./assets/concert-27.jpg";
 import cr1 from "./assets/CR-1.jpg";
 import cr2 from "./assets/CR-2.jpg";
 import cr3 from "./assets/CR-3.jpg";
@@ -219,6 +236,141 @@ const featuredConcerts: Concert[] = [
     image: concert11,
     description: "Prepare for a spectacular live show and memorable fan moments.",
   },
+
+  // ---------- 2027 ----------
+  {
+    title: "Sienna Spiro: My House Tour",
+    date: "Saturday, January 9, 2027",
+    dateISO: "2027-01-09",
+    location: "New Frontier Theater, Araneta City, Cubao",
+    image: concert12,
+    description: "Catch Sienna Spiro live in an intimate theater show.",
+  },
+  {
+    title: "LaLaLa Fest Manila",
+    date: "Thursday, January 14, 2027",
+    dateISO: "2027-01-14",
+    location: "Philippine Arena, Bocaue, Bulacan",
+    image: concert13,
+    description: "One-day festival headlined by Olivia Dean, with BINI, Up Dharma Down, Lola Amour and Sunkissed Lola.",
+  },
+  {
+    title: "Westlife 25: The Anniversary World Tour",
+    date: "January 20–21, 2027",
+    dateISO: "2027-01-20",
+    endDateISO: "2027-01-21",
+    location: "SM Mall of Asia Arena, Pasay",
+    image: concert14,
+    description: "Two nights of timeless ballads and sing-along moments.",
+  },
+  {
+    title: "Blue",
+    date: "Thursday, January 28, 2027",
+    dateISO: "2027-01-28",
+    location: "New Frontier Theater, Araneta City, Cubao",
+    image: concert15,
+    description: "Celebrate 25 years of Blue with a night of favorite hits.",
+  },
+  {
+    title: "KZ Tandingan: Wildflower",
+    date: "Sunday, February 7, 2027",
+    dateISO: "2027-02-07",
+    location: "Smart Araneta Coliseum, Quezon City",
+    image: concert16,
+    description: "KZ Tandingan's solo concert, full of powerhouse vocals.",
+  },
+  {
+    title: "Maroon 5",
+    date: "Sunday, February 7, 2027",
+    dateISO: "2027-02-07",
+    location: "SM Mall of Asia Arena, Pasay",
+    image: concert17,
+    description: "Sing along to chart-topping hits on the Asia 2027 tour.",
+  },
+  {
+    title: "Kehlani",
+    date: "Monday, February 15, 2027",
+    dateISO: "2027-02-15",
+    location: "SM Mall of Asia Arena, Pasay",
+    image: concert18,
+    description: "Catch the R&B star on her Kehlani World Tour.",
+  },
+  {
+    title: "Freya Skye: Stars Align Tour",
+    date: "Tuesday, February 16, 2027",
+    dateISO: "2027-02-16",
+    location: "New Frontier Theater, Araneta City, Cubao",
+    image: concert19,
+    description: "Capture an up-close show with Freya Skye.",
+  },
+  {
+    title: "Young K: YOUNGEST Solo Tour",
+    date: "Saturday, February 20, 2027",
+    dateISO: "2027-02-20",
+    location: "New Frontier Theater, Araneta City, Cubao",
+    image: concert20,
+    description: "The DAY6 singer-songwriter takes the stage solo.",
+  },
+  {
+    title: "BIGBANG: XX COSMOS World Tour",
+    date: "Saturday, February 20, 2027",
+    dateISO: "2027-02-20",
+    location: "SMDC Festival Grounds, Pasay",
+    image: concert21,
+    description: "G-Dragon, Taeyang and Daesung light up the stage. Capture every moment.",
+  },
+  {
+    title: "BTS World Tour 'Arirang'",
+    date: "March 13, 14 and 16, 2027",
+    dateISO: "2027-03-13",
+    endDateISO: "2027-03-16",
+    location: "Philippine Sports Stadium, Bocaue, Bulacan",
+    image: concert22,
+    description: "Three nights of BTS in Bulacan. Don't miss a second of it.",
+  },
+  {
+    title: "The Script: Man in the Arena Tour",
+    date: "March 18–20, 2027",
+    dateISO: "2027-03-18",
+    endDateISO: "2027-03-20",
+    location: "SM Mall of Asia Arena, Pasay",
+    image: concert23,
+    description: "Three nights of anthems and crowd singalongs.",
+  },
+  {
+    title: "M2M: TWO Tour",
+    date: "Friday, April 2, 2027",
+    dateISO: "2027-04-02",
+    location: "Smart Araneta Coliseum, Quezon City",
+    image: concert24,
+    description: "M2M returns with a night of nostalgic pop.",
+  },
+  {
+    title: "beabadoobee: The Powerlines Tour",
+    date: "Tuesday, April 13, 2027",
+    dateISO: "2027-04-13",
+    location: "SM Mall of Asia Arena, Pasay",
+    image: concert25,
+    description: "Her first arena show in Manila. Capture every moment.",
+  },
+  {
+    title: "Sleeping With Sirens",
+    date: "April 17–18, 2027",
+    dateISO: "2027-04-17",
+    endDateISO: "2027-04-18",
+    location: "New Frontier Theater, Araneta City, Cubao",
+    image: concert26,
+    description: "Two nights of post-hardcore energy and crowd moments.",
+  },
+  {
+    title: "Bruno Mars: The Romantic Tour",
+    date: "May 15, 16 and 18, 2027",
+    dateISO: "2027-05-15",
+    endDateISO: "2027-05-18",
+    location: "Philippine Arena, Bocaue, Bulacan",
+    image: concert27,
+    description: "Three nights of Bruno Mars live. Capture all of it in crisp detail.",
+  },
 ];
 
 
@@ -296,10 +448,10 @@ const faqs: FaqItem[] = [
           <p>The longer you rent, the lower the daily rate:</p>
           <ul className={faqList}>
             <li>
-              <strong className={strong}>Standard – ₱2,500/day</strong> (1–2 days). An additional ₱300 handling fee applies.
+              <strong className={strong}>Premium – ₱2,500/day</strong> (1–2 days). An additional ₱300 handling fee applies.
             </li>
             <li>
-              <strong className={strong}>Premium – ₱2,000/day</strong> (3–5 days) | Best Value. Includes everything in Standard, plus priority booking, free handling fee, and extended support hours.
+              <strong className={strong}>Standard – ₱2,000/day</strong> (3–5 days) | Best Value. Includes everything in Premium, plus priority booking, free handling fee, and extended support hours.
             </li>
             <li>
               <strong className={strong}>Long Rent – ₱1,500/day</strong> (6+ days). Includes everything in Premium, plus greater savings and our lowest daily rate.
@@ -312,11 +464,11 @@ const faqs: FaqItem[] = [
           <p>Mas mura po ang per-day rate kapag mas matagal ang rental:</p>
           <ul className={faqList}>
             <li>
-              <strong className={strong}>Standard – ₱2,500/day</strong> (1–2 days). May additional ₱300 handling fee.
+              <strong className={strong}>Premium – ₱2,500/day</strong> (1–2 days). May additional ₱300 handling fee.
             </li>
             <li>
-              <strong className={strong}>Premium – ₱2,000/day</strong> (3–5 days) – Best Value. Kasama ang lahat ng
-              nasa Standard, plus priority booking, libreng handling fee, at extended support hours.
+              <strong className={strong}>Standard – ₱2,000/day</strong> (3–5 days) – Best Value. Kasama ang lahat ng
+              nasa Premium, plus priority booking, libreng handling fee, at extended support hours.
             </li>
             <li>
               <strong className={strong}>Long Rent – ₱1,500/day</strong> (6+ days). Kasama ang lahat ng nasa Premium,
@@ -774,6 +926,22 @@ function useCompactTouch() {
   return compact;
 }
 
+// True on wide screens: the featured concerts carousel shows 5 cards there, and 3 everywhere else.
+function useWideScreen() {
+  const query = "(min-width: 1100px)";
+  const [wide, setWide] = useState(
+    () => typeof window !== "undefined" && window.matchMedia(query).matches
+  );
+  useEffect(() => {
+    const mq = window.matchMedia(query);
+    const update = () => setWide(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return wide;
+}
+
 // Scroll-linked replacement for TiltCard: the card tilts in from the bottom, flattens as it
 // reaches the middle of the screen, then tilts away as it leaves at the top.
 function ScrollCard({
@@ -946,6 +1114,7 @@ const [concerts] = useState<Concert[]>(() => {
   });
 });
 const isCompact = useCompactTouch();
+const isWide = useWideScreen();
   
   // Auto-advance the featured concerts carousel (pauses on hover/touch)
   useEffect(() => {
@@ -1088,9 +1257,10 @@ const isCompact = useCompactTouch();
       </p>
     </div>
 
-    {/* Portrait card carousel: centre card is larger, outlined in white, and sits on top */}
+    {/* Portrait card carousel: centre card is larger, outlined in white, and sits on top.
+        Shows 5 cards on wide screens and 3 on smaller ones. */}
     {concerts.length > 0 ? <div
-      className="relative mx-auto h-[32rem] max-w-5xl overflow-hidden min-[380px]:h-[35rem] sm:h-[37rem] md:h-[40rem]"
+      className="relative mx-auto h-[32rem] max-w-6xl overflow-hidden min-[380px]:h-[35rem] sm:h-[37rem] md:h-[40rem]"
       style={{ perspective: "1400px" }}
       onMouseEnter={() => setFeaturedPaused(true)}
       onMouseLeave={() => setFeaturedPaused(false)}
@@ -1101,8 +1271,14 @@ const isCompact = useCompactTouch();
         const n = concerts.length;
         const half = Math.floor(n / 2);
         const offset = ((i - featuredIndex + n + half) % n) - half;
-        const visible = Math.abs(offset) <= 1;
+        const abs = Math.abs(offset);
+        const maxVisible = isWide ? 2 : 1; // 5 cards on wide screens, 3 otherwise
+        const visible = abs <= maxVisible;
         const isCenter = offset === 0;
+        const dir = Math.sign(offset);
+        const shiftX = abs === 0 ? 0 : dir * (abs === 1 ? 82 : 136);
+        const cardScale = isCenter ? 1.1 : abs === 1 ? 0.86 : 0.68;
+        const tilt = abs === 0 ? 0 : -dir * (abs === 1 ? 22 : 30);
 
         return (
           <article
@@ -1117,10 +1293,10 @@ const isCompact = useCompactTouch();
                 : "cursor-pointer ring-1 ring-white/40 shadow-lg"
             }`}
             style={{
-              transform: `translateX(calc(-50% + ${offset * 82}%)) scale(${isCenter ? 1.1 : 0.84}) rotateY(${-offset * 22}deg)`,
-              zIndex: isCenter ? 30 : visible ? 20 : 0,
+              transform: `translateX(calc(-50% + ${shiftX}%)) scale(${cardScale}) rotateY(${tilt}deg)`,
+              zIndex: isCenter ? 30 : abs === 1 ? 20 : visible ? 10 : 0,
               opacity: visible ? 1 : 0,
-              filter: isCenter ? "none" : "brightness(0.6)",
+              filter: isCenter ? "none" : abs === 1 ? "brightness(0.6)" : "brightness(0.4)",
               pointerEvents: visible ? "auto" : "none",
             }}
           >
@@ -1128,7 +1304,7 @@ const isCompact = useCompactTouch();
             <img
               src={c.image || heroBg}
               alt={c.imageAlt || `${c.title} live at ${c.location} on ${c.date}`}
-              loading={Math.abs(offset) <= 2 ? "eager" : "lazy"}
+              loading={abs <= 2 ? "eager" : "lazy"}
               decoding="async"
               onError={(e) => {
                 // A missing or broken image falls back to the default photo instead of showing a broken icon
@@ -1185,8 +1361,8 @@ const isCompact = useCompactTouch();
       </p>
     )}
 
-    {/* Dots */}
-    {concerts.length > 1 && <div className="mt-6 flex justify-center gap-2">
+    {/* Dots (wrap onto extra rows so a long concert list never overflows) */}
+    {concerts.length > 1 && <div className="mx-auto mt-6 flex max-w-md flex-wrap justify-center gap-2">
       {concerts.map((_, i) => (
         <button
           key={i}
