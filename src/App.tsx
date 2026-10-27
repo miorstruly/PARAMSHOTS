@@ -55,7 +55,7 @@ import concert23 from "./assets/concert-23.jpg";
 import concert24 from "./assets/concert-24.jpg";
 import concert25 from "./assets/concert-25.jpg";
 import concert26 from "./assets/concert-26.jpg";
-import concert27 from "./assets/concert-27.jpg";
+import concert27 from "./assets/concert-27.png";
 import cr1 from "./assets/CR-1.jpg";
 import cr2 from "./assets/CR-2.jpg";
 import cr3 from "./assets/CR-3.jpg";
