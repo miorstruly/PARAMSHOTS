@@ -1028,17 +1028,6 @@ const isCompact = useCompactTouch();
                     </div>
                   ))}
                 </div>
-
-                <SiteButton
-                  as="a"
-                  href={BOOKING_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant={plan.highlight ? "light" : "primary"}
-                  full
-                >
-                  Book Now
-                </SiteButton>
               </>
             );
 
@@ -1184,20 +1173,6 @@ const isCompact = useCompactTouch();
                       {c.description}
                     </p>
                   )}
-                  <SiteButton
-                    as="a"
-                    href={BOOKING_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    variant="light"
-                    full
-                    style={{ marginTop: 16 }}
-                  >
-                    Reserve Your Phone
-                    <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </SiteButton>
                 </>
               )}
             </div>
