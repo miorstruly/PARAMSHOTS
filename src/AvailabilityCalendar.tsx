@@ -39,9 +39,6 @@ export default function AvailabilityCalendar({ bookingUrl }: { bookingUrl: strin
       )}
 
       <div className="mt-6 flex justify-center">
-        <SiteButton as="a" href={bookingUrl} target="_blank" rel="noopener noreferrer" variant="primary">
-          Book Your Dates
-        </SiteButton>
       </div>
     </section>
   );
