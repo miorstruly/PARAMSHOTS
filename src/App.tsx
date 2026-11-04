@@ -136,7 +136,7 @@ const requirementGroups = [
 const steps = [
   { num: "01", title: "Accomplish Google Form", desc: "Submit your rental details and requirements" },
   { num: "02", title: "Wait for Approval", desc: "We’ll review your application" },
-  { num: "03", title: "Payment", desc: "To reserve a spot, a 50% down payment (DP) is needed. DP is non-refundable" },
+  { num: "03", title: "Payment", desc: "To reserve a spot, a 50% down payment (DP) is needed. DP is non-refundable po" },
   { num: "04", title: "Confirmation", desc: "Receive your official booking confirmation and downpayment receipt" },
   { num: "05", title: "Meet Up", desc: "Pick up the phone at the agreed location and time" },
   { num: "06", title: "Return", desc: "Return the phone and accessories safely and on schedule" },
